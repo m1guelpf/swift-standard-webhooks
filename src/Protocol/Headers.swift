@@ -1,12 +1,23 @@
 import Foundation
 
+/// The header name for the webhook event ID.
 public let HEADER_WEBHOOK_ID = "webhook-id"
+
+/// The header name for the webhook signature.
 public let HEADER_WEBHOOK_SIGNATURE = "webhook-signature"
+
+/// The header name for the webhook timestamp.
 public let HEADER_WEBHOOK_TIMESTAMP = "webhook-timestamp"
 
+/// A collection of HTTP headers that may contain webhook authentication information.
 public protocol Headers {
+	/// The value of the header identifying the webhook event (`webhook-id`), if present.
 	var webhookIdHeader: String? { get }
+
+	/// The value of the header containing the webhook signature (`webhook-signature`), if present.
 	var webhookSignatureHeader: String? { get }
+
+	/// The value of the header indicating when the webhook was generated (`webhook-timestamp`), if present.
 	var webhookTimestampHeader: String? { get }
 }
 
