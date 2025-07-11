@@ -18,10 +18,12 @@ let package = Package(
     traits: [
         .default(enabledTraits: []),
         .trait(name: "NIO", description: "Enables NIO support for webhooks, allowing verification using NIOHTTP1 headers."),
+        .trait(name: "SwiftHTTPTypes", description: "Enables swift-http-types support for webhooks, allowing verification using HTTPField headers."),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-nio.git", from: "2.0.0"),
         .package(url: "https://github.com/apple/swift-crypto.git", "1.0.0"..<"4.0.0"),
+        .package(url: "https://github.com/apple/swift-http-types.git", from: "1.0.0"),
     ],
     targets: [
         .target(
@@ -29,6 +31,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Crypto", package: "swift-crypto"),
                 .product(name: "NIOHTTP1", package: "swift-nio", condition: .when(traits: ["NIO"])),
+                .product(name: "HTTPTypes", package: "swift-http-types", condition: .when(traits: ["SwiftHTTPTypes"])),
             ],
             path: "./src"
         ),
